@@ -1,0 +1,5 @@
+pyfiglet
+rich
+prompt_toolkit
+textual==0.1.18
+onql-client
