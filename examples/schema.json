@@ -1,0 +1,713 @@
+{
+    "fintrabit": {
+        "instruments": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "icon": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "currency": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "trading_name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "feeding_name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "overnight_margin_time": {
+                "type": "string",
+                "blank": "no",
+                "default": "00:00"
+            },
+            "timings": {
+                "type": "string",
+                "blank": "no",
+                "default": "00:00-00:00,00:00-00:00,00:00-00:00,00:00-00:00,00:00-00:00,00:00-00:00,00:00-00:00"
+            },
+            "static_data": {
+                "type": "json",
+                "blank": "no",
+                "default": ""
+            },
+            "static_category_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "instrument_dinamic_categories_relation": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "instrument_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "category_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "history_interval": {
+                "type": "number",
+                "blank": "no",
+                "default": "0"
+            }
+        },
+        "instrument_categories": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "properties": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            },
+            "type": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "chart_history": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "instrument_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "type": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "data": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            },
+            "time": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "currency": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "code": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "decimals": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "rate": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "variables_declarations": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "levels": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            },
+            "validator": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            }
+        },
+        "variables_definitions": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "account_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "level": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "level_value": {
+                "type": "json",
+                "blank": "no",
+                "default": ""
+            },
+            "value": {
+                "type": "json",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "accounts": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "account_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "username": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "password": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "broker_code": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "balance": {
+                "type": "number",
+                "blank": "no",
+                "default": "0"
+            },
+            "currency": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "metadata": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            },
+            "created_at": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": ""
+            },
+            "type": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "system": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "transactions": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "tid": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "account_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "type": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "amount": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "closing_balance": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "status": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "created_at": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": ""
+            },
+            "note": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "orders": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "tid": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "instrument_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "account_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "price": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "placed_qty": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "filled_qty": {
+                "type": "number",
+                "blank": "no",
+                "default": "0"
+            },
+            "order_type": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "validity_type": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "validity": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "position_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "status": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "side": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "placed_time": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": ""
+            },
+            "start_execution_time": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": "0"
+            },
+            "end_execution_time": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": "0"
+            },
+            "metadata": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            }
+        },
+        "trades": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "tid": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "order_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "instrument_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "account_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "price": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "qty": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "side": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "time": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": ""
+            },
+            "position_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "closed_pnl": {
+                "type": "number",
+                "blank": "no",
+                "default": "0"
+            },
+            "charges": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            },
+            "type": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "status": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "positions": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "tid": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "account_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "instrument_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "side": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "qty": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "price": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "status": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "closed_pnl": {
+                "type": "number",
+                "blank": "no",
+                "default": "0"
+            },
+            "used_balance": {
+                "type": "number",
+                "blank": "no",
+                "default": "0"
+            },
+            "created_at": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": ""
+            },
+            "updated_at": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "rules": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "order": {
+                "type": "number",
+                "blank": "no",
+                "default": ""
+            },
+            "name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "at": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "on": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "do": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            }
+        },
+        "groups": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "parent_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "admins": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "role": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "permissions": {
+                "type": "json",
+                "blank": "no",
+                "default": "[]"
+            },
+            "ips": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "username": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "password": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "broker_code": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "extensions": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "status": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "rules_logs": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "rule_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "order_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "order": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            },
+            "result": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "time": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        "chat_history": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "account_id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "content": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "role": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "time": {
+                "type": "timestamp",
+                "blank": "no",
+                "default": ""
+            }
+        },
+        
+        "crm_pages": {
+            "id": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "name": {
+                "type": "string",
+                "blank": "no",
+                "default": ""
+            },
+            "content": {
+                "type": "json",
+                "blank": "no",
+                "default": "{}"
+            }
+        }
+    }
+}

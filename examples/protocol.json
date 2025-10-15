@@ -1,0 +1,428 @@
+{
+    "fintrabit": {
+        "database": "fintrabit",
+        "entities": {
+            "instrument_categories": {
+                "table": "instrument_categories",
+                "fields": {
+                    "id": "id",
+                    "name": "name",
+                    "properties": "properties",
+                    "type": "type"
+                },
+                "contexts": {
+                    "account": "",
+                    "admin": ""
+                }
+            },
+            "instrument_dinamic_categories_relation": {
+                "table": "instrument_dinamic_categories_relation",
+                "fields": {
+                    "category_id": "category_id",
+                    "id": "id",
+                    "instrument_id": "instrument_id"
+                },
+                "context": {
+                    "account": "",
+                    "admin": ""
+                }
+            },
+            "instruments": {
+                "table": "instruments",
+                "fields": {
+                    "name": "name",
+                    "trading_name": "trading_name",
+                    "feeding_name": "feeding_name",
+                    "icon": "icon",
+                    "id": "id",
+                    "static_category_id": "static_category_id",
+                    "static_data": "static_data",
+                    "timings": "timings",
+                    "currency": "currency",
+                    "overnight_margin_time": "overnight_margin_time"
+                },
+                "relations": {
+                    "dinamic_categories": {
+                        "prototable": "instrument_categories",
+                        "type": "mtm",
+                        "through": "instrument_dinamic_categories_relation",
+                        "entity": "instrument_categories",
+                        "fk_field": "id:instrument_id:category_id:id"
+                    },
+                    "category": {
+                        "prototable": "instrument_categories",
+                        "type": "oto",
+                        "through": "",
+                        "entity": "instrument_categories",
+                        "fk_field": "static_category_id:id"
+                    },
+                    "history": {
+                        "prototable": "chart_history",
+                        "type": "otm",
+                        "through": "",
+                        "entity": "chart_history",
+                        "fk_field": "id:instrument_id"
+                    },
+                    "currency": {
+                        "prototable": "currency",
+                        "type": "oto",
+                        "through": "",
+                        "entity": "currency",
+                        "fk_field": "currency:code"
+                    }
+                },
+                "context": {
+                    "account": "",
+                    "admin": ""
+                }
+            },
+            "accounts": {
+                "table": "accounts",
+                "fields": {
+                    "account_id": "account_id",
+                    "balance": "balance",
+                    "created_at": "created_at",
+                    "currency": "currency",
+                    "broker_code": "broker_code",
+                    "id": "id",
+                    "metadata": "metadata",
+                    "system": "system",
+                    "type": "type"
+                },
+                "relations": {
+                    "orders": {
+                        "prototable": "orders",
+                        "type": "otm",
+                        "through": "",
+                        "entity": "orders",
+                        "fk_field": "id:account_id"
+                    },
+                    "trades": {
+                        "prototable": "trades",
+                        "type": "otm",
+                        "through": "",
+                        "entity": "trades",
+                        "fk_field": "id:account_id"
+                    },
+                    "positions": {
+                        "prototable": "positions",
+                        "type": "otm",
+                        "through": "",
+                        "entity": "positions",
+                        "fk_field": "id:account_id"
+                    },
+                    "transactions": {
+                        "prototable": "transactions",
+                        "type": "otm",
+                        "through": "",
+                        "entity": "transactions",
+                        "fk_field": "id:account_id"
+                    },
+                    "chat_history": {
+                        "prototable": "chat_history",
+                        "type": "otm",
+                        "through": "",
+                        "entity": "chat_history",
+                        "fk_field": "id:account_id"
+                    },
+                    "currency": {
+                        "prototable": "currency",
+                        "type": "oto",
+                        "through": "",
+                        "entity": "currency",
+                        "fk_field": "currency:code"
+                    }
+                },
+                "context": {
+                    "account": "fintrabit.accounts[id=$1]",
+                    "admin": "fintrabit.accounts[broker_code._like($1)]"
+                }
+            },
+            "admins": {
+                "table": "admins",
+                "fields": {
+                    "id": "id",
+                    "ips": "ips",
+                    "password": "password",
+                    "permissions": "permissions",
+                    "role": "role",
+                    "username": "username",
+                    "broker_code": "broker_code"
+                },
+                "context": {
+                    "admin": "fintrabit.admins[broker_code._like($1)]"
+                }
+            },
+            "chart_history": {
+                "table": "chart_history",
+                "fields": {
+                    "data": "data",
+                    "id": "id",
+                    "instrument_id": "instrument_id",
+                    "time": "time",
+                    "type": "type"
+                }
+            },
+            "currency": {
+                "table": "currency",
+                "fields": {
+                    "code": "code",
+                    "id": "id",
+                    "name": "name",
+                    "rate": "rate",
+                    "decimals": "decimals"
+                }
+            },
+            "orders": {
+                "table": "orders",
+                "fields": {
+                    "account_id": "account_id",
+                    "end_execution_time": "end_execution_time",
+                    "filled_qty": "filled_qty",
+                    "id": "id",
+                    "tid": "tid",
+                    "instrument_id": "instrument_id",
+                    "metadata": "metadata",
+                    "order_type": "order_type",
+                    "placed_qty": "placed_qty",
+                    "placed_time": "placed_time",
+                    "position_id": "position_id",
+                    "price": "price",
+                    "side": "side",
+                    "start_execution_time": "start_execution_time",
+                    "status": "status",
+                    "validity": "validity",
+                    "validity_type": "validity_type"
+                },
+                "relations": {
+                    "instruments": {
+                        "prototable": "instruments",
+                        "type": "mto",
+                        "through": "",
+                        "entity": "instruments",
+                        "fk_field": "instrument_id:id"
+                    },
+                    "accounts": {
+                        "prototable": "accounts",
+                        "type": "mto",
+                        "through": "",
+                        "entity": "accounts",
+                        "fk_field": "account_id:id"
+                    },
+                    "positions": {
+                        "prototable": "positions",
+                        "type": "mtm",
+                        "through": "trades",
+                        "entity": "positions",
+                        "fk_field": "id:order_id:position_id:id"
+                    }
+                },
+                "context": {
+                    "account": "fintrabit.orders[account_id=$1]",
+                    "admin": "fintrabit.accounts[broker_code._like($1)].orders"
+                }
+            },
+            "positions": {
+                "table": "positions",
+                "fields": {
+                    "account_id": "account_id",
+                    "closed_pnl": "closed_pnl",
+                    "created_at": "created_at",
+                    "tid": "tid",
+                    "id": "id",
+                    "instrument_id": "instrument_id",
+                    "price": "price",
+                    "qty": "qty",
+                    "side": "side",
+                    "status": "status",
+                    "updated_at": "updated_at",
+                    "used_balance": "used_balance"
+                },
+                "relations": {
+                    "accounts": {
+                        "prototable": "accounts",
+                        "type": "mto",
+                        "through": "",
+                        "entity": "accounts",
+                        "fk_field": "account_id:id"
+                    },
+                    "instruments": {
+                        "prototable": "instruments",
+                        "type": "mto",
+                        "through": "",
+                        "entity": "instruments",
+                        "fk_field": "instrument_id:id"
+                    },
+                    "orders": {
+                        "prototable": "orders",
+                        "type": "mtm",
+                        "through": "trades",
+                        "entity": "orders",
+                        "fk_field": "id:position_id:order_id:id"
+                    },
+                    "torders": {
+                        "prototable": "orders",
+                        "type": "otm",
+                        "through": "",
+                        "entity": "orders",
+                        "fk_field": "id:position_id"
+                    },
+                    "trades": {
+                        "prototable": "trades",
+                        "type": "otm",
+                        "through": "",
+                        "entity": "trades",
+                        "fk_field": "id:position_id"
+                    }
+                },
+                "context": {
+                    "account": "fintrabit.positions[account_id=$1]",
+                    "admin": "fintrabit.accounts[broker_code._like($1)].positions"
+                }
+            },
+            "rules": {
+                "table": "rules",
+                "fields": {
+                    "do": "do",
+                    "id": "id",
+                    "name": "name",
+                    "on": "on",
+                    "order": "order"
+                }
+            },
+            "trades": {
+                "table": "trades",
+                "fields": {
+                    "account_id": "account_id",
+                    "charges": "charges",
+                    "closed_pnl": "closed_pnl",
+                    "id": "id",
+                    "instrument_id": "instrument_id",
+                    "order_id": "order_id",
+                    "position_id": "position_id",
+                    "price": "price",
+                    "qty": "qty",
+                    "tid": "tid",
+                    "side": "side",
+                    "status": "status",
+                    "time": "time",
+                    "type": "type"
+                },
+                "relations": {
+                    "instruments": {
+                        "prototable": "instruments",
+                        "type": "mto",
+                        "through": "",
+                        "entity": "instruments",
+                        "fk_field": "instrument_id:id"
+                    },
+                    "accounts": {
+                        "prototable": "accounts",
+                        "type": "mto",
+                        "through": "",
+                        "entity": "accounts",
+                        "fk_field": "account_id:id"
+                    },
+                    "orders": {
+                        "prototable": "orders",
+                        "type": "mto",
+                        "through": "",
+                        "entity": "orders",
+                        "fk_field": "order_id:id"
+                    },
+                    "positions": {
+                        "prototable": "positions",
+                        "type": "mto",
+                        "through": "",
+                        "entity": "positions",
+                        "fk_field": "position_id:id"
+                    }
+                },
+                "context": {
+                    "account": "fintrabit.trades[account_id=$1]",
+                    "admin": "fintrabit.accounts[broker_code._like($1)].trades"
+                }
+            },
+            "transactions": {
+                "table": "transactions",
+                "fields": {
+                    "account_id": "account_id",
+                    "amount": "amount",
+                    "closing_balance": "closing_balance",
+                    "created_at": "created_at",
+                    "id": "id",
+                    "note": "note",
+                    "status": "status",
+                    "type": "type"
+                },
+                "relations": {
+                    "accounts": {
+                        "prototable": "accounts",
+                        "type": "mto",
+                        "through": "",
+                        "entity": "accounts",
+                        "fk_field": "account_id:id"
+                    }
+                },
+                "context": {
+                    "account": "fintrabit.transactions[account_id=$1]",
+                    "admin": "fintrabit.accounts[broker_code._like($1)].transactions"
+                }
+            },
+            "variables_declarations": {
+                "table": "variables_declarations",
+                "fields": {
+                    "id": "id",
+                    "levels": "levels",
+                    "name": "name",
+                    "validator": "validator"
+                }
+            },
+            "variables_definitions": {
+                "table": "variables_definitions",
+                "fields": {
+                    "account_id": "account_id",
+                    "id": "id",
+                    "level": "level",
+                    "level_value": "level_value",
+                    "name": "name",
+                    "value": "value"
+                }
+            },
+            "chat_history": {
+                "table": "chat_history",
+                "fields": {
+                    "account_id": "account_id",
+                    "content": "content",
+                    "id": "id",
+                    "role": "role",
+                    "time": "time"
+                },
+                "context": {
+                    "account": "fintrabit.chat_history[account_id=$1]._asc(time)",
+                    "admin": "fintrabit.accounts[broker_code._like($1)].chat_history"
+                }
+            },
+            "rules_logs": {
+                "table": "rules_logs",
+                "fields": {
+                    "id": "id",
+                    "order": "order",
+                    "order_id": "order_id",
+                    "result": "result",
+                    "rule_id": "rule_id",
+                    "time": "time"
+                }
+            },
+            "crm_pages": {
+                "table": "crm_pages",
+                "fields": {
+                    "content": "content",
+                    "id": "id",
+                    "name": "name"
+                }
+            }
+        }
+    }
+}
+
