@@ -1,0 +1,2120 @@
+[
+  {
+    "database": "fintrabit",
+    "tables": [
+      {
+        "name": "variables_definitions",
+        "schema": {
+          "ID": "e6b8c588d64f23b91777adf142b5e7c3",
+          "Name": "variables_definitions",
+          "Columns": {
+            "account_id": {
+              "ID": "fd982184af0820508f41dfdabdab0642",
+              "Name": "account_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "059cb7bcd4e93359906401808da7672a",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "level": {
+              "ID": "8f32b0c5db3ac6a4e2b43e9303dfbd5d",
+              "Name": "level",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "level_value": {
+              "ID": "7f05805331f0e50b0ae9c96e58060574",
+              "Name": "level_value",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "name": {
+              "ID": "2f9b5c2b978b2b0b0c6e0d47e77a3c34",
+              "Name": "name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "value": {
+              "ID": "34cc78af519068066793e8a49b8857a8",
+              "Name": "value",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "positions",
+        "schema": {
+          "ID": "4f9b0cd0e0d9489ee8fa5c7f26b54320",
+          "Name": "positions",
+          "Columns": {
+            "account_id": {
+              "ID": "c9dbe213e3e3708499391b7a3e8842cd",
+              "Name": "account_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "closed_pnl": {
+              "ID": "dd1ba2937dd7a800b6438eaf21ab6aca",
+              "Name": "closed_pnl",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "0",
+              "Indexed": true
+            },
+            "created_at": {
+              "ID": "32f1df70afa2be9abc40ee4b7f5788a3",
+              "Name": "created_at",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "ee03c545122ad2b3a512d648c4a8677b",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "instrument_id": {
+              "ID": "925eefc4a3491d4f566cc63f07b6a4e8",
+              "Name": "instrument_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "price": {
+              "ID": "887c8f93a279f228138f391707bc4887",
+              "Name": "price",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "qty": {
+              "ID": "8c1fc4111ebc4e4176f49a5c582b2c06",
+              "Name": "qty",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "side": {
+              "ID": "9f43becf2f5c6856cce7eb8353f64d09",
+              "Name": "side",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "status": {
+              "ID": "bb36ce59235df3cf19c3527fa1a7c2fc",
+              "Name": "status",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "tid": {
+              "ID": "b32991fbcf06ccbfeb843eefa0f760c5",
+              "Name": "tid",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "updated_at": {
+              "ID": "15c4f3a37ece71e5e46cb99c42a454f1",
+              "Name": "updated_at",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "used_balance": {
+              "ID": "6e74a8899d1374b28c7ffce5d0ccaf36",
+              "Name": "used_balance",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "0",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "instrument_categories",
+        "schema": {
+          "ID": "674f6907d112202cb5484b024dea3a8a",
+          "Name": "instrument_categories",
+          "Columns": {
+            "id": {
+              "ID": "1a12e57a7bf9ae2fe2641a7f5dd075de",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "name": {
+              "ID": "1f7a874178fb6e6e1cd6b02dba138812",
+              "Name": "name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "properties": {
+              "ID": "6e2e48113f3fec382b33eba5626bef37",
+              "Name": "properties",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "type": {
+              "ID": "6836940bd5a1a27bff3fda7e5011abcf",
+              "Name": "type",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "currency",
+        "schema": {
+          "ID": "77feedb15134c37188ddc703533c97b3",
+          "Name": "currency",
+          "Columns": {
+            "code": {
+              "ID": "69590af0d825e8e99ccdd380d6695c40",
+              "Name": "code",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "decimals": {
+              "ID": "21ce9f354e3389e1562c7eb50c0b1e08",
+              "Name": "decimals",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "5fcdc4a6d23170031e75654842007e9e",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "name": {
+              "ID": "a1716d90fb813b08724ab8e9d2720386",
+              "Name": "name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "rate": {
+              "ID": "1146a401d8d6ce6b36918ae83084fc26",
+              "Name": "rate",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "trades",
+        "schema": {
+          "ID": "8aa2a1e18dc36f0968f90c03f2072fbe",
+          "Name": "trades",
+          "Columns": {
+            "account_id": {
+              "ID": "8c77105c5f5531e772d06b99526fafe0",
+              "Name": "account_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "charges": {
+              "ID": "0d1bc402174d1d1dc80ab5311eb1fb81",
+              "Name": "charges",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "closed_pnl": {
+              "ID": "2e21aa767946bb254a76f01e61a705dc",
+              "Name": "closed_pnl",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "0",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "0a0f786a9627c5183c2bac9483141073",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "instrument_id": {
+              "ID": "c2f0760e10c36138a825d152ec1d076b",
+              "Name": "instrument_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "order_id": {
+              "ID": "57d2b096b3cf20e44a192bdc225241b7",
+              "Name": "order_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "position_id": {
+              "ID": "581bce5b7a36d33debe9233defb3cfd5",
+              "Name": "position_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$EMPTY",
+              "Indexed": true
+            },
+            "price": {
+              "ID": "1e17a03d316762fe001ce4e56f200f71",
+              "Name": "price",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "qty": {
+              "ID": "a45af98e77b676961e1748e4d6679d92",
+              "Name": "qty",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "side": {
+              "ID": "9a5b6102b10a1c7125221ea808dc1bf4",
+              "Name": "side",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "status": {
+              "ID": "89c3a30b217f29b690f983ada0fe89f8",
+              "Name": "status",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$EMPTY",
+              "Indexed": true
+            },
+            "tid": {
+              "ID": "43e714bb825dabbc8e7bae45d735ab71",
+              "Name": "tid",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "time": {
+              "ID": "1165d9357127c3904f2a147180ce9afa",
+              "Name": "time",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "type": {
+              "ID": "5a30e3aab5816e3946f76e97eeb950a2",
+              "Name": "type",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$EMPTY",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "admins",
+        "schema": {
+          "ID": "b2d0ef5e05ebd17e0bf217d641ab1857",
+          "Name": "admins",
+          "Columns": {
+            "broker_code": {
+              "ID": "c04281adb6624ccc7139ed84dff31f04",
+              "Name": "broker_code",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "0b7a36dd764729cc956f62044a068a40",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "ips": {
+              "ID": "35092ffae5c41aa75d01d0c6bfb3ccd4",
+              "Name": "ips",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "password": {
+              "ID": "d212a5f461203ef82a389252666c653e",
+              "Name": "password",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "permissions": {
+              "ID": "d80d2f92519778ec115e4dce9b74b751",
+              "Name": "permissions",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "[]",
+              "Indexed": true
+            },
+            "role": {
+              "ID": "48e217fd59402527f2e3d93e54fd6bd5",
+              "Name": "role",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "username": {
+              "ID": "4271c7b58394b945a1309fec34abff1d",
+              "Name": "username",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": [
+          {
+            "broker_code": "admin",
+            "id": "eb93059e-9346-46e7-be65-b89a659d7188",
+            "ips": "*",
+            "password": "sha256$c37ae8bbbba9a21ac76faacfbecd52d0$2461c5b5cba1766163ccb5bd2ab63f5d473f673f2559c0305a4624b3d301fd4b",
+            "permissions": [
+              "fetch",
+              "admin/login",
+              "instrument/category/create",
+              "instrument/category/update",
+              "instrument/category/delete",
+              "instrument/category/dinamic/create",
+              "instrument/category/dinamic/update",
+              "instrument/category/dinamic/delete",
+              "instrument/create",
+              "instrument/update",
+              "instrument/delete",
+              "variable/create",
+              "variable/update",
+              "variable/delete",
+              "account/create",
+              "account/update",
+              "account/delete",
+              "rule/create",
+              "rule/update",
+              "rule/order/update",
+              "rule/delete",
+              "order/place",
+              "order/update",
+              "order/cancel",
+              "admin/create",
+              "admin/update",
+              "admin/delete",
+              "transaction/deposit",
+              "transaction/withdraw",
+              "crm/page/create",
+              "crm/page/update",
+              "crm/page/delete"
+            ],
+            "role": "admin",
+            "username": "admin"
+          }
+        ]
+      },
+      {
+        "name": "variables_declarations",
+        "schema": {
+          "ID": "d4a5d6d55a699fd1cff65ae9d90e7da5",
+          "Name": "variables_declarations",
+          "Columns": {
+            "id": {
+              "ID": "90b96ed62031091baf5ab7210e212bd1",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "levels": {
+              "ID": "a84e92030224c5a4d562def7d53ddaf7",
+              "Name": "levels",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "name": {
+              "ID": "caf35d5d2b4f00a43072e5713c515cba",
+              "Name": "name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "properties": {
+              "ID": "15e8ba544142d2b955d8a74fecd6dcd2",
+              "Name": "properties",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "properties_length": {
+              "ID": "f1f725d375f54f8e1d83068664a63fa2",
+              "Name": "properties_length",
+              "Type": "number",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "properties_length_type": {
+              "ID": "c561635507df565f4484e731ba5a5055",
+              "Name": "properties_length_type",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "instruments",
+        "schema": {
+          "ID": "024b6fedd728cef59ab4793d4cb5a8d2",
+          "Name": "instruments",
+          "Columns": {
+            "currency": {
+              "ID": "61068c6d005d9ff6a2814a2e4c267388",
+              "Name": "currency",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "dinamic_data": {
+              "ID": "c23a345a0cfdd91ae19f88dc1e785edb",
+              "Name": "dinamic_data",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "feeding_name": {
+              "ID": "ef38a3faf3fcde1e6f45edf729539911",
+              "Name": "feeding_name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "icon": {
+              "ID": "75b84065a3e7283a9fd994a2adbe988d",
+              "Name": "icon",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "c78fc207846d9004ca35b4ebd6278e19",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "name": {
+              "ID": "2d724fc73696414332d7ce0683eb6b86",
+              "Name": "name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "overnight_margin_time": {
+              "ID": "cee618ce3b2aaaf9c7417f420e3c882a",
+              "Name": "overnight_margin_time",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "00:00",
+              "Indexed": true
+            },
+            "static_category_id": {
+              "ID": "dcf85d92b8abaecbb42832f21f54696a",
+              "Name": "static_category_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "static_data": {
+              "ID": "ece3626df01199ddc37fa1eadcad2959",
+              "Name": "static_data",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "timings": {
+              "ID": "607199264f5c69fd8912487a48381bd4",
+              "Name": "timings",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "00:00-00:00,00:00-00:00,00:00-00:00,00:00-00:00,00:00-00:00,00:00-00:00,00:00-00:00",
+              "Indexed": true
+            },
+            "trading_name": {
+              "ID": "4637b3ab201823fef27aab0eae657d70",
+              "Name": "trading_name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "rules_logs",
+        "schema": {
+          "ID": "a89537b4769ad7617739f0247ee8b961",
+          "Name": "rules_logs",
+          "Columns": {
+            "id": {
+              "ID": "9dba48bcd0b6344f2bdec80f2f8507a6",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "order": {
+              "ID": "25c9db50cf41f890751bfe7e95674962",
+              "Name": "order",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "order_id": {
+              "ID": "c2e2f6690e467b232ef24da1524d518b",
+              "Name": "order_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$EMPTY",
+              "Indexed": true
+            },
+            "result": {
+              "ID": "b9f16d640d5ef028a7bd17e01667bd06",
+              "Name": "result",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "rule_id": {
+              "ID": "1bac3c0d72b2453a68960bb6392b763d",
+              "Name": "rule_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "time": {
+              "ID": "0e7912af94b6118757ddbfc2ce4f1788",
+              "Name": "time",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "orders",
+        "schema": {
+          "ID": "c100a757b91ced7cfb1d08341eebbef8",
+          "Name": "orders",
+          "Columns": {
+            "account_id": {
+              "ID": "e20622e93d974d1685f9059f4987e945",
+              "Name": "account_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "end_execution_time": {
+              "ID": "7a39fc09c734986a6cdf5a9638c781c9",
+              "Name": "end_execution_time",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "0",
+              "Indexed": true
+            },
+            "filled_qty": {
+              "ID": "e350db6a40939863d5c7078d0b4226ea",
+              "Name": "filled_qty",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "0",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "4cf74e26ae519b592dd1e8ab3d0fe0ff",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "instrument_id": {
+              "ID": "3c3ee57f38004350c6ac5897e9dcb949",
+              "Name": "instrument_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "metadata": {
+              "ID": "8bf49bcdec8c3253ca41ec46b43f98f3",
+              "Name": "metadata",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "order_type": {
+              "ID": "421d446145749a7ce1d57f067ae4536b",
+              "Name": "order_type",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "placed_qty": {
+              "ID": "0d43181c72ecba304bb7150e6a724162",
+              "Name": "placed_qty",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "placed_time": {
+              "ID": "726a4a9f971ec347763e68d7e9a3365e",
+              "Name": "placed_time",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "position_id": {
+              "ID": "c844934358fcc643fb94f73f9d05d460",
+              "Name": "position_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$EMPTY",
+              "Indexed": true
+            },
+            "price": {
+              "ID": "aa2bb6a517f118a7096583f200608cab",
+              "Name": "price",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "side": {
+              "ID": "283a32c6c7226cdb97a8349bf1858fdb",
+              "Name": "side",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "start_execution_time": {
+              "ID": "f105d319eafb6404298d8a5c68e4a298",
+              "Name": "start_execution_time",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "0",
+              "Indexed": true
+            },
+            "status": {
+              "ID": "96a26f99380ad037f86cd4d259ca2090",
+              "Name": "status",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "tid": {
+              "ID": "5c27a8e1bdf1a5f2f562aade640eff20",
+              "Name": "tid",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "chat_history",
+        "schema": {
+          "ID": "18a351b2fd935645265a7d3428b97c05",
+          "Name": "chat_history",
+          "Columns": {
+            "account_id": {
+              "ID": "cdb8796927e09ae6df59c825e9aede79",
+              "Name": "account_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "content": {
+              "ID": "b5299cbcd8571e83c95eb56a176f2d91",
+              "Name": "content",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "62afe0d26fdbd1b5297d1d6f63705328",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "role": {
+              "ID": "3b075613fe4738e11d26657a05a74690",
+              "Name": "role",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "time": {
+              "ID": "3d67d408fb887c35aff4d6678ea648f9",
+              "Name": "time",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "chart_history",
+        "schema": {
+          "ID": "1b2359bd88d8485a7511e2d2be8ee4c2",
+          "Name": "chart_history",
+          "Columns": {
+            "data": {
+              "ID": "4eb14c5868d80806d1f34b381b098a79",
+              "Name": "data",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "1ca8951ea60794a04ba350354b872869",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "instrument_id": {
+              "ID": "bf1fb66090dc127df2a1a7ea02f6ad85",
+              "Name": "instrument_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "time": {
+              "ID": "b1961c35aef297cede4ffe1c49fe18f4",
+              "Name": "time",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "type": {
+              "ID": "efde9fc2270b486f78a3a212c59e9af3",
+              "Name": "type",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "rules",
+        "schema": {
+          "ID": "7420b3a5a3c8b8641ef145e3a1d84b3b",
+          "Name": "rules",
+          "Columns": {
+            "at": {
+              "ID": "db93d2b09e210c18648fe32f69940004",
+              "Name": "at",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "do": {
+              "ID": "9c5a4fd4c981e2357fdc07dcf1f35ca2",
+              "Name": "do",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "94c2a8e6c5205b0a73a9a00ecb9642bd",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "name": {
+              "ID": "952320b5f84974f3e463d118334a1c38",
+              "Name": "name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "on": {
+              "ID": "bcd6bd95704892d369e876ae1e0016f9",
+              "Name": "on",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "order": {
+              "ID": "9ed4865ec2d01e496395afca6f621499",
+              "Name": "order",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "instrument_dinamic_categories_relation",
+        "schema": {
+          "ID": "9f217424375f4970938bfdb2a89ebf1a",
+          "Name": "instrument_dinamic_categories_relation",
+          "Columns": {
+            "category_id": {
+              "ID": "cc0f68b72c9d971f4e4fc616a3d8bd30",
+              "Name": "category_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "history_interval": {
+              "ID": "fac78ffae6a1d49caac39a3bfc57eada",
+              "Name": "history_interval",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "0",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "daa4dae93c46528302b0d1b3e0f1c648",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "instrument_id": {
+              "ID": "89ec9bca4e1d1fb4304f583b0946cca4",
+              "Name": "instrument_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "transactions",
+        "schema": {
+          "ID": "be6bd4ab86f1367afbfdb05aa533c74b",
+          "Name": "transactions",
+          "Columns": {
+            "account_id": {
+              "ID": "52c779730fdd41598b3f20d021282024",
+              "Name": "account_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "amount": {
+              "ID": "1a82c224284482f79faf8e1fea774100",
+              "Name": "amount",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "closing_balance": {
+              "ID": "8bdd074a7ebde24d07f59b90d42a8d38",
+              "Name": "closing_balance",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "created_at": {
+              "ID": "4b441a9ff36de5e3063a0039ec150b16",
+              "Name": "created_at",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "c2c5140ad4e82e0e6f3cf83e34a30f18",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "note": {
+              "ID": "2ddfea4189ea89c1ec6230f16ca8f5ba",
+              "Name": "note",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "status": {
+              "ID": "ad5ec294e7b2497610879838186d8004",
+              "Name": "status",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "tid": {
+              "ID": "0503543737cecad1d6775b7fd30b0eb8",
+              "Name": "tid",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "type": {
+              "ID": "5bc3bba9f7881fa8f7c708b08f87a9e9",
+              "Name": "type",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "groups",
+        "schema": {
+          "ID": "fc6225357e2df1f3013efb8a24bcc62b",
+          "Name": "groups",
+          "Columns": {
+            "id": {
+              "ID": "cc5477645a816bbaebb08498914e8135",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "name": {
+              "ID": "6acd23aa67d03c5bd43c6b754baa6434",
+              "Name": "name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "parent_id": {
+              "ID": "e4b09c8d57bd0f2f6ae4ca8e23c9e365",
+              "Name": "parent_id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "crm_pages",
+        "schema": {
+          "ID": "753cbf214862ace313954b80f4660cef",
+          "Name": "crm_pages",
+          "Columns": {
+            "content": {
+              "ID": "c5b1ec5227f6af8bad95bf49b8fae57d",
+              "Name": "content",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "12bb452a0ad329504654d4c853e54429",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "name": {
+              "ID": "de5a0a15cb5b596801d0a7004f9ed743",
+              "Name": "name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "accounts",
+        "schema": {
+          "ID": "7c596c72af8ee74ea105817177203bbd",
+          "Name": "accounts",
+          "Columns": {
+            "balance": {
+              "ID": "df8d699141c9674924fe1dd5fae40555",
+              "Name": "balance",
+              "Type": "number",
+              "Formatter": "decimal:2",
+              "Validator": "required",
+              "DefaultValue": "0",
+              "Indexed": true
+            },
+            "broker_code": {
+              "ID": "1d27cce96ee1b7e5f0040d5aa9a190bc",
+              "Name": "broker_code",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "created_at": {
+              "ID": "dee8ad49e79fc114ef96407578f62bcb",
+              "Name": "created_at",
+              "Type": "timestamp",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "currency": {
+              "ID": "f8787314ebec3cf934f305b9543d4e65",
+              "Name": "currency",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "id": {
+              "ID": "3ac41d9f53b786fe6b6bc5a788c8761d",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "metadata": {
+              "ID": "b25f347ba8b331d78a35ed2e72c57d61",
+              "Name": "metadata",
+              "Type": "json",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "{}",
+              "Indexed": true
+            },
+            "password": {
+              "ID": "7baaf13dab863ffe6d331bfffa9b8f47",
+              "Name": "password",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "system": {
+              "ID": "5e33ceaf12b0de8d909d46951641f888",
+              "Name": "system",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "type": {
+              "ID": "c5d34bff68b12ac4cb3c63cac736fc10",
+              "Name": "type",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "username": {
+              "ID": "f29f86670a3cd5d0ee5f51c6207da8b5",
+              "Name": "username",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      },
+      {
+        "name": "extensions",
+        "schema": {
+          "ID": "96f56324061773739adb728d0d2b07fe",
+          "Name": "extensions",
+          "Columns": {
+            "id": {
+              "ID": "18c78ecf48221b5fce762193988bfcae",
+              "Name": "id",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "$UUID",
+              "Indexed": true
+            },
+            "name": {
+              "ID": "4068696e9e00143cd0249f63fc2d1a63",
+              "Name": "name",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            },
+            "status": {
+              "ID": "a8c6545dd2b10b247fd2f84ee3285ad6",
+              "Name": "status",
+              "Type": "string",
+              "Formatter": "",
+              "Validator": "required",
+              "DefaultValue": "",
+              "Indexed": true
+            }
+          },
+          "PK": "id"
+        },
+        "data": []
+      }
+    ]
+  },
+  {
+    "protocols": [
+      {
+        "password": "default",
+        "definition": {
+          "fintrabit": {
+            "database": "fintrabit",
+            "entities": {
+              "accounts": {
+                "table": "accounts",
+                "fields": {
+                  "balance": "balance",
+                  "broker_code": "broker_code",
+                  "created_at": "created_at",
+                  "currency": "currency",
+                  "id": "id",
+                  "metadata": "metadata",
+                  "password": "password",
+                  "system": "system",
+                  "type": "type",
+                  "username": "username"
+                }
+              },
+              "admins": {
+                "table": "admins",
+                "fields": {
+                  "broker_code": "broker_code",
+                  "id": "id",
+                  "ips": "ips",
+                  "password": "password",
+                  "permissions": "permissions",
+                  "role": "role",
+                  "username": "username"
+                }
+              },
+              "chart_history": {
+                "table": "chart_history",
+                "fields": {
+                  "data": "data",
+                  "id": "id",
+                  "instrument_id": "instrument_id",
+                  "time": "time",
+                  "type": "type"
+                }
+              },
+              "chat_history": {
+                "table": "chat_history",
+                "fields": {
+                  "account_id": "account_id",
+                  "content": "content",
+                  "id": "id",
+                  "role": "role",
+                  "time": "time"
+                }
+              },
+              "crm_pages": {
+                "table": "crm_pages",
+                "fields": {
+                  "content": "content",
+                  "id": "id",
+                  "name": "name"
+                }
+              },
+              "currency": {
+                "table": "currency",
+                "fields": {
+                  "code": "code",
+                  "decimals": "decimals",
+                  "id": "id",
+                  "name": "name",
+                  "rate": "rate"
+                }
+              },
+              "extensions": {
+                "table": "extensions",
+                "fields": {
+                  "id": "id",
+                  "name": "name",
+                  "status": "status"
+                }
+              },
+              "groups": {
+                "table": "groups",
+                "fields": {
+                  "id": "id",
+                  "name": "name",
+                  "parent_id": "parent_id"
+                }
+              },
+              "instrument_categories": {
+                "table": "instrument_categories",
+                "fields": {
+                  "id": "id",
+                  "name": "name",
+                  "properties": "properties",
+                  "type": "type"
+                }
+              },
+              "instrument_dinamic_categories_relation": {
+                "table": "instrument_dinamic_categories_relation",
+                "fields": {
+                  "category_id": "category_id",
+                  "history_interval": "history_interval",
+                  "id": "id",
+                  "instrument_id": "instrument_id"
+                }
+              },
+              "instruments": {
+                "table": "instruments",
+                "fields": {
+                  "currency": "currency",
+                  "dinamic_data": "dinamic_data",
+                  "feeding_name": "feeding_name",
+                  "icon": "icon",
+                  "id": "id",
+                  "name": "name",
+                  "overnight_margin_time": "overnight_margin_time",
+                  "static_category_id": "static_category_id",
+                  "static_data": "static_data",
+                  "timings": "timings",
+                  "trading_name": "trading_name"
+                }
+              },
+              "orders": {
+                "table": "orders",
+                "fields": {
+                  "account_id": "account_id",
+                  "end_execution_time": "end_execution_time",
+                  "filled_qty": "filled_qty",
+                  "id": "id",
+                  "instrument_id": "instrument_id",
+                  "metadata": "metadata",
+                  "order_type": "order_type",
+                  "placed_qty": "placed_qty",
+                  "placed_time": "placed_time",
+                  "position_id": "position_id",
+                  "price": "price",
+                  "side": "side",
+                  "start_execution_time": "start_execution_time",
+                  "status": "status",
+                  "tid": "tid"
+                }
+              },
+              "positions": {
+                "table": "positions",
+                "fields": {
+                  "account_id": "account_id",
+                  "closed_pnl": "closed_pnl",
+                  "created_at": "created_at",
+                  "id": "id",
+                  "instrument_id": "instrument_id",
+                  "price": "price",
+                  "qty": "qty",
+                  "side": "side",
+                  "status": "status",
+                  "tid": "tid",
+                  "updated_at": "updated_at",
+                  "used_balance": "used_balance"
+                }
+              },
+              "rules": {
+                "table": "rules",
+                "fields": {
+                  "at": "at",
+                  "do": "do",
+                  "id": "id",
+                  "name": "name",
+                  "on": "on",
+                  "order": "order"
+                }
+              },
+              "rules_logs": {
+                "table": "rules_logs",
+                "fields": {
+                  "id": "id",
+                  "order": "order",
+                  "order_id": "order_id",
+                  "result": "result",
+                  "rule_id": "rule_id",
+                  "time": "time"
+                }
+              },
+              "trades": {
+                "table": "trades",
+                "fields": {
+                  "account_id": "account_id",
+                  "charges": "charges",
+                  "closed_pnl": "closed_pnl",
+                  "id": "id",
+                  "instrument_id": "instrument_id",
+                  "order_id": "order_id",
+                  "position_id": "position_id",
+                  "price": "price",
+                  "qty": "qty",
+                  "side": "side",
+                  "status": "status",
+                  "tid": "tid",
+                  "time": "time",
+                  "type": "type"
+                }
+              },
+              "transactions": {
+                "table": "transactions",
+                "fields": {
+                  "account_id": "account_id",
+                  "amount": "amount",
+                  "closing_balance": "closing_balance",
+                  "created_at": "created_at",
+                  "id": "id",
+                  "note": "note",
+                  "status": "status",
+                  "tid": "tid",
+                  "type": "type"
+                }
+              },
+              "variables_declarations": {
+                "table": "variables_declarations",
+                "fields": {
+                  "id": "id",
+                  "levels": "levels",
+                  "name": "name",
+                  "properties": "properties",
+                  "properties_length": "properties_length",
+                  "properties_length_type": "properties_length_type"
+                }
+              },
+              "variables_definitions": {
+                "table": "variables_definitions",
+                "fields": {
+                  "account_id": "account_id",
+                  "id": "id",
+                  "level": "level",
+                  "level_value": "level_value",
+                  "name": "name",
+                  "value": "value"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "password": "fintrabit",
+        "definition": {
+          "fintrabit": {
+            "database": "fintrabit",
+            "entities": {
+              "accounts": {
+                "table": "accounts",
+                "fields": {
+                  "balance": "balance",
+                  "broker_code": "broker_code",
+                  "created_at": "created_at",
+                  "currency": "currency",
+                  "id": "id",
+                  "metadata": "metadata",
+                  "system": "system",
+                  "type": "type"
+                },
+                "relations": {
+                  "chat_history": {
+                    "prototable": "chat_history",
+                    "type": "otm",
+                    "entity": "chat_history",
+                    "fkfield": "id:account_id"
+                  },
+                  "currency": {
+                    "prototable": "currency",
+                    "type": "oto",
+                    "entity": "currency",
+                    "fkfield": "currency:code"
+                  },
+                  "orders": {
+                    "prototable": "orders",
+                    "type": "otm",
+                    "entity": "orders",
+                    "fkfield": "id:account_id"
+                  },
+                  "positions": {
+                    "prototable": "positions",
+                    "type": "otm",
+                    "entity": "positions",
+                    "fkfield": "id:account_id"
+                  },
+                  "trades": {
+                    "prototable": "trades",
+                    "type": "otm",
+                    "entity": "trades",
+                    "fkfield": "id:account_id"
+                  },
+                  "transactions": {
+                    "prototable": "transactions",
+                    "type": "otm",
+                    "entity": "transactions",
+                    "fkfield": "id:account_id"
+                  },
+                  "variables_definitions": {
+                    "prototable": "variables_definitions",
+                    "type": "otm",
+                    "entity": "variables_definitions",
+                    "fkfield": "id:account_id"
+                  }
+                },
+                "context": {
+                  "account": "fintrabit.accounts[id=$1]",
+                  "admin": "fintrabit.accounts[broker_code._like($1)]"
+                }
+              },
+              "admins": {
+                "table": "admins",
+                "fields": {
+                  "broker_code": "broker_code",
+                  "id": "id",
+                  "ips": "ips",
+                  "password": "password",
+                  "permissions": "permissions",
+                  "role": "role",
+                  "username": "username"
+                },
+                "context": {
+                  "admin": "fintrabit.admins[broker_code._like($1)]"
+                }
+              },
+              "chart_history": {
+                "table": "chart_history",
+                "fields": {
+                  "data": "data",
+                  "id": "id",
+                  "instrument_id": "instrument_id",
+                  "time": "time",
+                  "type": "type"
+                }
+              },
+              "chat_history": {
+                "table": "chat_history",
+                "fields": {
+                  "account_id": "account_id",
+                  "content": "content",
+                  "id": "id",
+                  "role": "role",
+                  "time": "time"
+                },
+                "context": {
+                  "account": "fintrabit.chat_history[account_id=$1]._asc(time)",
+                  "admin": "fintrabit.accounts[broker_code._like($1)].chat_history"
+                }
+              },
+              "crm_pages": {
+                "table": "crm_pages",
+                "fields": {
+                  "content": "content",
+                  "id": "id",
+                  "name": "name"
+                }
+              },
+              "currency": {
+                "table": "currency",
+                "fields": {
+                  "code": "code",
+                  "decimals": "decimals",
+                  "id": "id",
+                  "name": "name",
+                  "rate": "rate"
+                }
+              },
+              "instrument_categories": {
+                "table": "instrument_categories",
+                "fields": {
+                  "id": "id",
+                  "name": "name",
+                  "properties": "properties",
+                  "type": "type"
+                }
+              },
+              "instrument_dinamic_categories_relation": {
+                "table": "instrument_dinamic_categories_relation",
+                "fields": {
+                  "category_id": "category_id",
+                  "id": "id",
+                  "instrument_id": "instrument_id"
+                },
+                "context": {
+                  "account": "",
+                  "admin": ""
+                }
+              },
+              "instruments": {
+                "table": "instruments",
+                "fields": {
+                  "currency": "currency",
+                  "dinamic_data": "dinamic_data",
+                  "feeding_name": "feeding_name",
+                  "icon": "icon",
+                  "id": "id",
+                  "name": "name",
+                  "overnight_margin_time": "overnight_margin_time",
+                  "static_category_id": "static_category_id",
+                  "static_data": "static_data",
+                  "timings": "timings",
+                  "trading_name": "trading_name"
+                },
+                "relations": {
+                  "category": {
+                    "prototable": "instrument_categories",
+                    "type": "oto",
+                    "entity": "instrument_categories",
+                    "fkfield": "static_category_id:id"
+                  },
+                  "currency": {
+                    "prototable": "currency",
+                    "type": "oto",
+                    "entity": "currency",
+                    "fkfield": "currency:code"
+                  },
+                  "dinamic_categories": {
+                    "prototable": "instrument_categories",
+                    "type": "mtm",
+                    "entity": "instrument_categories",
+                    "fkfield": "id:instrument_id:category_id:id",
+                    "through": "instrument_dinamic_categories_relation"
+                  },
+                  "history": {
+                    "prototable": "chart_history",
+                    "type": "otm",
+                    "entity": "chart_history",
+                    "fkfield": "id:instrument_id"
+                  }
+                },
+                "context": {
+                  "account": "",
+                  "admin": ""
+                }
+              },
+              "orders": {
+                "table": "orders",
+                "fields": {
+                  "account_id": "account_id",
+                  "end_execution_time": "end_execution_time",
+                  "filled_qty": "filled_qty",
+                  "id": "id",
+                  "instrument_id": "instrument_id",
+                  "metadata": "metadata",
+                  "order_type": "order_type",
+                  "placed_qty": "placed_qty",
+                  "placed_time": "placed_time",
+                  "position_id": "position_id",
+                  "price": "price",
+                  "side": "side",
+                  "start_execution_time": "start_execution_time",
+                  "status": "status",
+                  "tid": "tid"
+                },
+                "relations": {
+                  "accounts": {
+                    "prototable": "accounts",
+                    "type": "mto",
+                    "entity": "accounts",
+                    "fkfield": "account_id:id"
+                  },
+                  "instruments": {
+                    "prototable": "instruments",
+                    "type": "mto",
+                    "entity": "instruments",
+                    "fkfield": "instrument_id:id"
+                  },
+                  "positions": {
+                    "prototable": "positions",
+                    "type": "mtm",
+                    "entity": "positions",
+                    "fkfield": "id:order_id:position_id:id",
+                    "through": "trades"
+                  }
+                },
+                "context": {
+                  "account": "fintrabit.orders[account_id=$1]",
+                  "admin": "fintrabit.accounts[broker_code._like($1)].orders"
+                }
+              },
+              "positions": {
+                "table": "positions",
+                "fields": {
+                  "account_id": "account_id",
+                  "closed_pnl": "closed_pnl",
+                  "created_at": "created_at",
+                  "id": "id",
+                  "instrument_id": "instrument_id",
+                  "price": "price",
+                  "qty": "qty",
+                  "side": "side",
+                  "status": "status",
+                  "tid": "tid",
+                  "updated_at": "updated_at",
+                  "used_balance": "used_balance"
+                },
+                "relations": {
+                  "accounts": {
+                    "prototable": "accounts",
+                    "type": "mto",
+                    "entity": "accounts",
+                    "fkfield": "account_id:id"
+                  },
+                  "instruments": {
+                    "prototable": "instruments",
+                    "type": "mto",
+                    "entity": "instruments",
+                    "fkfield": "instrument_id:id"
+                  },
+                  "orders": {
+                    "prototable": "orders",
+                    "type": "mtm",
+                    "entity": "orders",
+                    "fkfield": "id:position_id:order_id:id",
+                    "through": "trades"
+                  },
+                  "torders": {
+                    "prototable": "orders",
+                    "type": "otm",
+                    "entity": "orders",
+                    "fkfield": "id:position_id"
+                  },
+                  "trades": {
+                    "prototable": "trades",
+                    "type": "otm",
+                    "entity": "trades",
+                    "fkfield": "id:position_id"
+                  }
+                },
+                "context": {
+                  "account": "fintrabit.positions[account_id=$1]",
+                  "admin": "fintrabit.accounts[broker_code._like($1)].positions"
+                }
+              },
+              "rules": {
+                "table": "rules",
+                "fields": {
+                  "do": "do",
+                  "id": "id",
+                  "name": "name",
+                  "on": "on",
+                  "order": "order"
+                }
+              },
+              "rules_logs": {
+                "table": "rules_logs",
+                "fields": {
+                  "id": "id",
+                  "order": "order",
+                  "order_id": "order_id",
+                  "result": "result",
+                  "rule_id": "rule_id",
+                  "time": "time"
+                }
+              },
+              "trades": {
+                "table": "trades",
+                "fields": {
+                  "account_id": "account_id",
+                  "charges": "charges",
+                  "closed_pnl": "closed_pnl",
+                  "id": "id",
+                  "instrument_id": "instrument_id",
+                  "order_id": "order_id",
+                  "position_id": "position_id",
+                  "price": "price",
+                  "qty": "qty",
+                  "side": "side",
+                  "status": "status",
+                  "tid": "tid",
+                  "time": "time",
+                  "type": "type"
+                },
+                "relations": {
+                  "accounts": {
+                    "prototable": "accounts",
+                    "type": "mto",
+                    "entity": "accounts",
+                    "fkfield": "account_id:id"
+                  },
+                  "instruments": {
+                    "prototable": "instruments",
+                    "type": "mto",
+                    "entity": "instruments",
+                    "fkfield": "instrument_id:id"
+                  },
+                  "orders": {
+                    "prototable": "orders",
+                    "type": "mto",
+                    "entity": "orders",
+                    "fkfield": "order_id:id"
+                  },
+                  "positions": {
+                    "prototable": "positions",
+                    "type": "mto",
+                    "entity": "positions",
+                    "fkfield": "position_id:id"
+                  }
+                },
+                "context": {
+                  "account": "fintrabit.trades[account_id=$1]",
+                  "admin": "fintrabit.accounts[broker_code._like($1)].trades"
+                }
+              },
+              "transactions": {
+                "table": "transactions",
+                "fields": {
+                  "account_id": "account_id",
+                  "amount": "amount",
+                  "closing_balance": "closing_balance",
+                  "created_at": "created_at",
+                  "id": "id",
+                  "note": "note",
+                  "status": "status",
+                  "type": "type"
+                },
+                "relations": {
+                  "accounts": {
+                    "prototable": "accounts",
+                    "type": "mto",
+                    "entity": "accounts",
+                    "fkfield": "account_id:id"
+                  }
+                },
+                "context": {
+                  "account": "fintrabit.transactions[account_id=$1]",
+                  "admin": "fintrabit.accounts[broker_code._like($1)].transactions"
+                }
+              },
+              "variables_declarations": {
+                "table": "variables_declarations",
+                "fields": {
+                  "id": "id",
+                  "levels": "levels",
+                  "name": "name",
+                  "properties": "properties",
+                  "properties_length": "properties_length",
+                  "properties_length_type": "properties_length_type"
+                }
+              },
+              "variables_definitions": {
+                "table": "variables_definitions",
+                "fields": {
+                  "account_id": "account_id",
+                  "id": "id",
+                  "level": "level",
+                  "level_value": "level_value",
+                  "name": "name",
+                  "value": "value"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+]

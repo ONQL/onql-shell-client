@@ -12,11 +12,11 @@ class Import:
         import <filename>
         """
         parts = command.split()
-        if len(parts) < 2:
+        if len(parts) < 1:
             print("Usage: import <filename>")
             return
         
-        filename = parts[1]
+        filename = parts[0]
         
         if not os.path.exists(filename):
             # Try adding .json
@@ -76,69 +76,33 @@ class Import:
                 print(f"  Failed to restore protocol {password}: {e}")
 
     async def createTable(self, dbname, tablename, schema):
-        # schema is the payload from "desc" command.
-        # Expected structure: {"headers": ["Field", "Type", ...], "data": [[name, type, storage, blank, default], ...]}
-        
-        if "data" not in schema:
-            print(f"    Skipping table {tablename}: Invalid schema definition")
+        # schema corresponds to the JSON object in backup.json (which is the output of 'desc table')
+        # Structure: {"Columns": { "colname": {"Name":..., "Type":..., ...}, ... }}
+
+        if "Columns" not in schema:
+            print(f"    Skipping table {tablename}: Invalid schema definition (missing 'Columns')")
             return
 
-        columns_def = ""
-        # iterate over rows in the desc grid
-        # The schema grid usually has: Name, Type, Storage, Blank, Default
-        # We need to map these back to create table command: (name,type,storage,blank,default)
-        
-        # We assume the order of columns in "data" matches the create syntax or check headers
-        # Headers usually: ["Field", "Type", "Null", "Key", "Default", "Extra"] in SQL, but for ONQL?
-        # Let's assume onql desc output maps closely to the create params.
-        # Based on schema.py parseCreateTable: name,type,storage,blank,default
-        
-        # Let's verify headers if available, otherwise assume index 0,1,2,3,4
-        
-        grid_data = schema["data"]
-        # If schema["data"] is a dict with "data", unpack it
-        if isinstance(grid_data, dict) and "data" in grid_data:
-            grid_data = grid_data["data"]
-            
-        for col_row in grid_data:
-            # col_row is [name, type, storage, blank, default]
-            if len(col_row) >= 2:
-                name = col_row[0]
-                ctype = col_row[1]
-                storage = col_row[2] if len(col_row) > 2 else "disk"
-                blank = col_row[3] if len(col_row) > 3 else "no"
-                default = col_row[4] if len(col_row) > 4 else ""
-                
-                # Enclose default in quotes if it's empty string or string?
-                # The generic create parser splits by comma.
-                # If default is empty string, we should explicitly pass something? 
-                # parseCreateTable does: default = col_parts[4] if len > 4 else ""
-                
-                # Check for empty string representation
-                if default == "":
-                   default = '""'
-                
-                columns_def += f"({name},{ctype},{storage},{blank},{default})"
-
-        create_cmd = f"create table {dbname} {tablename} {columns_def}"
-        # Schema handler `create table` logic expects the full command string to parse it manually?
-        # No, schema.py `handle` calls `setupPayload`. `setupPayload` calls `parseCreateTable`.
-        # `parseCreateTable` takes the `command` string.
-        # So we can't send JSON to `parseCreateTable`. We need to simulate the CLI command or construct the payload manually!
-        
-        # `parseCreateTable` returns `["create", "table", dbname, tablename, columns_dict]`
-        # We can construct this list directly and send it to "schema" endpoint!
-        # This bypasses the string parsing and is safer.
-        
         columns_dict = {}
-        for col_row in grid_data:
-            if len(col_row) >= 2:
-                 columns_dict[col_row[0]] = {
-                     "type": col_row[1],
-                     "storage": col_row[2] if len(col_row) > 2 else "disk",
-                     "blank": col_row[3] if len(col_row) > 3 else "no",
-                     "default": col_row[4] if len(col_row) > 4 else ""
-                 }
+        for col_name, col_def in schema["Columns"].items():
+             # Map keys to what schema handler expects in "create table" payload
+             # schema.py parseCreateTable expects: type, storage, blank, default, index?
+             # Actually, schema.py `handle` -> `setupPayload` -> `parseCreateTable` 
+             # -> returns params.
+             # BUT here we are sending ["create", "table", dbname, tablename, columns_dict] DIRECTLY.
+             # So we need to match the structure that `schema.py` USES when it receives this payload.
+             # Looking at schema.py `processCreate`, it iterates over `columns` dict.
+             # It expects keys: type, storage, blank, default, validator, formatter, index.
+             
+             columns_dict[col_name] = {
+                 "type": col_def.get("Type", "string"),
+                 "storage": col_def.get("Storage", "disk"), # Default to disk? backup doesn't show storage
+                 "blank": "yes" if col_def.get("Validator") != "required" else "no", # Infer blank from validator?
+                 "default": col_def.get("DefaultValue", ""),
+                 "validator": col_def.get("Validator", ""),
+                 "formatter": col_def.get("Formatter", ""),
+                 "index": col_def.get("Indexed", False)
+             }
 
         payload = ["create", "table", dbname, tablename, columns_dict]
         await self.oc.send_request("schema", json.dumps(payload))
@@ -155,13 +119,11 @@ class Import:
         # So we must construct the command string.
         
         # Get column names from schema
-        col_names = []
-        grid_data = schema["data"]
-        if isinstance(grid_data, dict) and "data" in grid_data:
-            grid_data = grid_data["data"]
-            
-        for col_row in grid_data:
-            col_names.append(col_row[0])
+        if "Columns" in schema:
+             col_names = list(schema["Columns"].keys())
+        else:
+             print(f"Skipping insert for {tablename}: Missing Columns definition")
+             return
             
         cols_str = ",".join(col_names)
         
@@ -176,14 +138,29 @@ class Import:
             # Row is a list of values.
             # Convert values to string representations
             
+            # Row can be a list of values (old style) or a dict (new style)
             vals = []
-            for v in row:
-                if isinstance(v, str):
-                    vals.append(f"\"{v}\"") # Quote strings
-                elif v is None:
-                    vals.append("null")
-                else:
-                    vals.append(str(v))
+            if isinstance(row, dict):
+                 for col in col_names:
+                      v = row.get(col)
+                      if isinstance(v, (dict, list)):
+                          vals.append(f"'{json.dumps(v)}'") # Quote JSON
+                      elif isinstance(v, str):
+                          vals.append(f"\"{v}\"") # Quote strings
+                      elif v is None:
+                          vals.append("null")
+                      else:
+                          vals.append(str(v))
+            else:
+                for v in row:
+                    if isinstance(v, (dict, list)):
+                        vals.append(f"'{json.dumps(v)}'") # Quote JSON
+                    elif isinstance(v, str):
+                        vals.append(f"\"{v}\"") # Quote strings
+                    elif v is None:
+                        vals.append("null")
+                    else:
+                        vals.append(str(v))
             
             vals_str = ",".join(vals)
             

@@ -7,44 +7,44 @@ class Export:
 
     async def handle(self, command):
         """
-        Command format:
-        export all [filename]
-        export db <dbname> [filename]
-        export table <dbname> <tablename> [filename]
+        Command format received (args only):
+        all [filename]
+        db <dbname> [filename]
+        table <dbname> <tablename> [filename]
         """
         parts = command.split()
-        if len(parts) < 2:
+        if len(parts) < 1:
             print("Usage: export [all|db|table] ...")
             return
 
-        target = parts[1]
+        target = parts[0]
         filename = "backup.json"  # Default filename
 
         result_data = []
 
         try:
             if target == "all":
-                if len(parts) > 2:
-                    filename = parts[2]
+                if len(parts) > 1:
+                    filename = parts[1]
                 result_data = await self.exportAll()
             
             elif target == "db":
-                if len(parts) < 3:
+                if len(parts) < 2:
                     print("Usage: export db <dbname> [filename]")
                     return
-                dbname = parts[2]
-                if len(parts) > 3:
-                    filename = parts[3]
+                dbname = parts[1]
+                if len(parts) > 2:
+                    filename = parts[2]
                 result_data = await self.exportDb(dbname)
             
             elif target == "table":
-                if len(parts) < 4:
+                if len(parts) < 3:
                     print("Usage: export table <dbname> <tablename> [filename]")
                     return
-                dbname = parts[2]
-                tablename = parts[3]
-                if len(parts) > 4:
-                    filename = parts[4]
+                dbname = parts[1]
+                tablename = parts[2]
+                if len(parts) > 3:
+                    filename = parts[3]
                 result_data = await self.exportTable(dbname, tablename)
             
             else:
@@ -125,8 +125,16 @@ class Export:
         
         table_data_payload = json.loads(table_data_res["payload"])
         rows = []
-        if "data" in table_data_payload and table_data_payload["data"] and "data" in table_data_payload["data"]:
-             rows = table_data_payload["data"]["data"]
+        if isinstance(table_data_payload, list):
+             rows = table_data_payload
+        elif isinstance(table_data_payload, dict):
+             if "data" in table_data_payload and table_data_payload["data"]:
+                  # Check if it's double nested (grid) or single nested (list of dicts)
+                  sub_data = table_data_payload["data"]
+                  if isinstance(sub_data, dict) and "data" in sub_data:
+                       rows = sub_data["data"]
+                  else:
+                       rows = sub_data
         
         return [{
             "database": dbname,
@@ -165,11 +173,18 @@ class Export:
             data_payload = json.loads(data_res["payload"])
             
             rows = []
-            if 'error' in data_payload and data_payload['error']:
-                 print(f"Error fetching data for {dbname}.{tbl}: {data_payload['error']}")
-            elif "data" in data_payload and data_payload["data"] is not None:
-                 if "data" in data_payload["data"]:
-                     rows = data_payload["data"]["data"]
+            if isinstance(data_payload, list):
+                 rows = data_payload
+            elif isinstance(data_payload, dict):
+                 if 'error' in data_payload and data_payload['error']:
+                     print(f"Error fetching data for {dbname}.{tbl}: {data_payload['error']}")
+                 elif "data" in data_payload and data_payload["data"] is not None:
+                      # Check if it's double nested (grid) or single nested (list of dicts)
+                      sub_data = data_payload["data"]
+                      if isinstance(sub_data, dict) and "data" in sub_data:
+                           rows = sub_data["data"]
+                      else:
+                           rows = sub_data
             
             tables_export.append({
                 "name": tbl,
