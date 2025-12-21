@@ -4,6 +4,9 @@ from handlers import onql
 from handlers import insert
 from handlers import delete
 from handlers import update
+from handlers import exporter
+from handlers import importer
+from handlers import stats
 
 class Manager:
     def __init__(self,onqlclient):
@@ -13,8 +16,10 @@ class Manager:
             'onql': onql.ONQL(onqlclient),
             'insert': insert.Insert(onqlclient),
             'delete': delete.Delete(onqlclient),
-            'update': update.Update(onqlclient)
-            # Add more keyword: handler mappings here
+            'update': update.Update(onqlclient),
+            'export': exporter.Export(onqlclient),
+            'import': importer.Import(onqlclient),
+            'stats': stats.Stats(onqlclient)
         }
 
     async def handle(self, keyword, data):
@@ -23,9 +28,3 @@ class Manager:
         else:
             print(f"No handler for keyword: {keyword}")
             # raise ValueError(f"No handler for keyword: {keyword}")
-
-    # def handle_command(self, keyword, command):
-    #     if keyword in self.handlers:
-    #         return self.handlers[keyword].run_command(command)
-    #     else:
-    #         raise ValueError(f"No handler for keyword: {keyword}")

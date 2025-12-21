@@ -7,7 +7,7 @@ class ONQL():
         self.oc = oc
         self.password = "default"
         self.contextKey = ""
-        self.values = ""
+        self.values = []
     
     async def handle(self,command):
         if self.runLocalCommands(command):
@@ -26,9 +26,9 @@ class ONQL():
             if res['error']:
                 print(res["error"])
             else:
-                utils.printJson(json.loads(res["data"]))
+                utils.printJson(res["data"])
         except:
-            print(res["payload"])
+            print(res)
         # self.handleResponse(res)
 
     def runLocalCommands(self,command):
@@ -42,3 +42,4 @@ class ONQL():
             return True
         
         return False
+        

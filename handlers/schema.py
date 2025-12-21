@@ -68,14 +68,7 @@ class Schema():
             return ["alter", cmd[1], cmd[2], json.loads(command.lstrip(cmd[0] + " " + cmd[1] + " " + cmd[2]))]
         
         elif cmd[0] == "drop":
-            if cmd[1] == "db":
-                if len(cmd) < 3:
-                    raise ValueError("drop db requires database name")
-                return ["drop", "db", cmd[2]]
-            elif cmd[1] == "table":
-                if len(cmd) < 4:
-                    raise ValueError("drop table requires dbname tablename")
-                return ["drop", "table", cmd[2], cmd[3]]
+            return cmd
         elif cmd[0] == "set":
             return ["set", utils.read_json_file(cmd[1])]
         elif cmd[0] == "refresh-indexes":
