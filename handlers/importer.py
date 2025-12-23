@@ -111,62 +111,30 @@ class Import:
         if not rows:
             return
 
-        # We need column names to construct the insert command
-        # insert command: db table (col1,col2) (val1,val2)
-        # OR we can send direct JSON payload to insert if we knew the format?
-        # insert.py sends raw command to server: `res = await self.oc.send_request("insert", command)`
-        # It does NOT use JSON payload.
-        # So we must construct the command string.
-        
         # Get column names from schema
         if "Columns" in schema:
              col_names = list(schema["Columns"].keys())
         else:
              print(f"Skipping insert for {tablename}: Missing Columns definition")
              return
-            
-        cols_str = ",".join(col_names)
         
-        # Batching might be good, but let's do row by row for safety first
-        # row is a list of values? Or dict?
-        # export.py uses `table_data_payload["data"]["data"]` which is typically list of lists (rows) matching headers.
-        
-        # Wait, if export.py exports list of lists, we need to map values to columns by index.
-        # Assuming Data rows order matches Schema column order.
-        
+        # Insert row by row using JSON format
         for row in rows:
-            # Row is a list of values.
-            # Convert values to string representations
-            
-            # Row can be a list of values (old style) or a dict (new style)
-            vals = []
+            # Row can be a list of values or a dict
+            records = {}
             if isinstance(row, dict):
-                 for col in col_names:
-                      v = row.get(col)
-                      if isinstance(v, (dict, list)):
-                          vals.append(f"'{json.dumps(v)}'") # Quote JSON
-                      elif isinstance(v, str):
-                          vals.append(f"\"{v}\"") # Quote strings
-                      elif v is None:
-                          vals.append("null")
-                      else:
-                          vals.append(str(v))
+                 records = row
             else:
-                for v in row:
-                    if isinstance(v, (dict, list)):
-                        vals.append(f"'{json.dumps(v)}'") # Quote JSON
-                    elif isinstance(v, str):
-                        vals.append(f"\"{v}\"") # Quote strings
-                    elif v is None:
-                        vals.append("null")
-                    else:
-                        vals.append(str(v))
+                # Map list values to column names
+                for col, val in zip(col_names, row):
+                    records[col] = val
             
-            vals_str = ",".join(vals)
+            # Create insert payload: {"db":"dbname","table":"tablename","records":{...}}
+            payload = {
+                "db": dbname,
+                "table": tablename,
+                "records": records
+            }
             
-            # Construct command
-            # db table (cols) (vals)
-            cmd = f"{dbname} {tablename} ({cols_str}) ({vals_str})"
-            
-            # Send insert
-            await self.oc.send_request("insert", cmd)
+            # Send insert request with JSON payload
+            await self.oc.send_request("insert", json.dumps(payload))
