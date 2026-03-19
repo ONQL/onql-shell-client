@@ -7,7 +7,7 @@ from handlers import update
 from handlers import exporter
 from handlers import importer
 from handlers import stats
-from handlers import sql
+# from handlers import sql
 
 class Manager:
     def __init__(self,onqlclient):
@@ -21,7 +21,7 @@ class Manager:
             'export': exporter.Export(onqlclient),
             'import': importer.Import(onqlclient),
             'stats': stats.Stats(onqlclient),
-            'sql': sql.SQL(onqlclient)
+            # 'sql': sql.SQL(onqlclient)
         }
 
     async def handle(self, keyword, data):

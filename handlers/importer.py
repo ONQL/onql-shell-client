@@ -9,15 +9,20 @@ class Import:
     async def handle(self, command):
         """
         Command format:
-        import <filename>
+        import <filename> [table <tablename>]
         """
         parts = command.split()
         if len(parts) < 1:
-            print("Usage: import <filename>")
+            print("Usage: import <filename> [table <tablename>]")
             return
-        
+
         filename = parts[0]
-        
+        filter_table = None
+
+        # Parse optional: table <tablename>
+        if len(parts) >= 3 and parts[1].lower() == "table":
+            filter_table = parts[2]
+
         if not os.path.exists(filename):
             # Try adding .json
             if os.path.exists(filename + ".json"):
@@ -28,40 +33,48 @@ class Import:
 
         try:
             print(f"Reading backup from {filename}...")
-            with open(filename, 'r') as f:
+            with open(filename, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-            
-            await self.processImport(data)
+
+            await self.processImport(data, filter_table=filter_table)
             print("Import completed successfully.")
         except Exception as e:
             print(f"Import failed: {e}")
             import traceback
             traceback.print_exc()
 
-    async def processImport(self, data):
+    async def processImport(self, data, filter_table=None):
         for item in data:
             if "protocols" in item:
+                if filter_table:
+                    continue  # skip protocols when importing a single table
                 print("Restoring protocols...")
                 await self.importProtocols(item["protocols"])
                 continue
 
             if "database" in item:
                 dbname = item["database"]
-                # Create Database
-                # We blindly try to create it. If it exists, server might complain or ignore.
-                # Schema handler expects: create db <name> -> ["create", "db", name]
-                print(f"Restoring database: {dbname}")
-                await self.oc.send_request("schema", json.dumps(["create", "db", dbname]))
-                
-                if "tables" in item:
-                    for table_obj in item["tables"]:
+                tables = item.get("tables", [])
+
+                # If filtering, only proceed if this db contains the target table
+                if filter_table:
+                    matching = [t for t in tables if t["name"] == filter_table]
+                    if not matching:
+                        continue
+                    print(f"Restoring database: {dbname} (table: {filter_table} only)")
+                    await self.oc.send_request("schema", json.dumps(["create", "db", dbname]))
+                    for table_obj in matching:
+                        print(f"  Restoring table: {table_obj['name']}")
+                        await self.createTable(dbname, table_obj["name"], table_obj["schema"])
+                        await self.insertData(dbname, table_obj["name"], table_obj["schema"], table_obj["data"])
+                else:
+                    print(f"Restoring database: {dbname}")
+                    await self.oc.send_request("schema", json.dumps(["create", "db", dbname]))
+                    for table_obj in tables:
                         tablename = table_obj["name"]
-                        schema = table_obj["schema"]
-                        rows = table_obj["data"]
-                        
                         print(f"  Restoring table: {tablename}")
-                        await self.createTable(dbname, tablename, schema)
-                        await self.insertData(dbname, tablename, schema, rows)
+                        await self.createTable(dbname, tablename, table_obj["schema"])
+                        await self.insertData(dbname, tablename, table_obj["schema"], table_obj["data"])
 
     async def importProtocols(self, protocols):
         for p in protocols:
@@ -138,3 +151,4 @@ class Import:
             
             # Send insert request with JSON payload
             await self.oc.send_request("insert", json.dumps(payload))
+

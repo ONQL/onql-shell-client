@@ -76,6 +76,20 @@ The ONQL shell provides a command-line interface to interact with the ONQL serve
 *   `protocol set <json_file_path>`: Sets the protocol from a JSON file.
 *   `protocol drop <db_name> <table_name>`: Drops a protocol.
 
+### Stats Commands
+
+*   `stats`: Shows current system stats (connections, memory, active queries, goroutines).
+*   `stats queries [limit]`: Shows recent query history (default limit: 100).
+*   `stats summary`: Shows aggregated query statistics (total queries, errors, slowest/heaviest queries, queries by target).
+*   `stats clear`: Clears the query history.
+
+### Import / Export Commands
+
+*   `export all [filename]`: Exports all data.
+*   `export db <db_name> [filename]`: Exports a database.
+*   `export table <db_name> <table_name> [filename]`: Exports a table.
+*   `import <filename> [table <table_name>]`: Imports data from a file.
+
 ## Project Structure
 
 ```
@@ -83,10 +97,13 @@ The ONQL shell provides a command-line interface to interact with the ONQL serve
 ├── handlers/
 │   ├── __init__.py
 │   ├── delete.py
+│   ├── exporter.py
+│   ├── importer.py
 │   ├── insert.py
 │   ├── onql.py
 │   ├── protocol.py
 │   ├── schema.py
+│   ├── stats.py
 │   └── update.py
 ├── .gitignore
 ├── main.py
