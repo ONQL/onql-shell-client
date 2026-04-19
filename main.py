@@ -3,15 +3,40 @@ import manager
 import shell
 import asyncio
 
+
 async def main():
-    # oc = await onqlclient.ONQLClient.create(host="localhost", port=5656)
-    # oc = await onqlclient.ONQLClient.create(host="192.46.213.87", port=int(input("Enter port :- ")))
-    oc = await onqlclient.ONQLClient.create(host=input("Enter host :- ") or "localhost", port=int(input("Enter port :- ") or 5656), data_limit=16 * 1024 * 1024 * 1024,  default_timeout=300)
+    try:
+        host = input("Enter host (default localhost) :- ") or "localhost"
+    except (KeyboardInterrupt, EOFError):
+        print("\nExiting...")
+        return
+
+    while True:
+        try:
+            port_input = input("Enter port (default 5656) :- ")
+            port = int(port_input) if port_input else 5656
+            break
+        except ValueError:
+            print("Invalid port. Please enter a valid port number.")
+        except (KeyboardInterrupt, EOFError):
+            print("\nExiting...")
+            return
+
+    try:
+        oc = await onqlclient.ONQLClient.create(host=host, port=port)
+    except Exception as e:
+        print(f"\n[!] Connection Error")
+        print(f"--------------------------------------------------")
+        print(f"Could not connect to ONQL server at {host}:{port}")
+        print(f"Reason: {e}")
+        print(f"--------------------------------------------------\n")
+        return
 
     m = manager.Manager(oc)
 
     sh = shell.Shell(m)
     await sh.start()
+
 
 asyncio.run(main())
 # main()
